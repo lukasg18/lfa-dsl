@@ -6,29 +6,11 @@ except NameError:
     pass
 
 import turtle
+import functionsTurtle
 
 from lark import Lark
 
-turtle_grammar = """
-    start: instruction+
-
-    instruction: MOVEMENT NUMBER            -> movement
-               | "c" COLOR [COLOR]          -> change_color
-               | "fill" code_block          -> fill
-               | "repeat" NUMBER code_block -> repeat
-
-    code_block: "{" instruction+ "}"
-
-    MOVEMENT: "f"|"b"|"l"|"r"
-    COLOR: LETTER+
-
-    %import common.LETTER
-    %import common.INT -> NUMBER
-    %import common.WS
-    %ignore WS
-"""
-
-parser = Lark(turtle_grammar)
+parser = Lark(open('grammar.lark'))
 
 def run_instruction(t):
     if t.data == 'change_color':
@@ -70,15 +52,6 @@ def main():
             run_turtle(code)
         except Exception as e:
             print(e)
-
-def test():
-    text = """
-        c red yellow
-        fill { repeat 36 {
-            f200 l170
-        }}
-    """
-    run_turtle(text)
 
 if __name__ == '__main__':
     # test()
