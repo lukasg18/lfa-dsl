@@ -11,10 +11,15 @@ import functionsTurtle
 from lark import Lark
 
 parser = Lark(open('grammar.lark'))
+dic = {}
 
 def run_instruction(t):
     if t.data == 'change_color':
-        turtle.color(*t.children)   # We just pass the color names as-is
+        if bool(dic):                   # se existe alguma coisa no dicionario
+            name = t.children[0].value
+            turtle.color(dic[name])   # We just pass the color names as-is
+        else:
+            turtle.color(*t.children)   # We just pass the color names as-is
 
     elif t.data == 'movement':
         name, number = t.children
@@ -36,6 +41,16 @@ def run_instruction(t):
     elif t.data == 'code_block':
         for cmd in t.children:
             run_instruction(cmd)
+
+    elif t.data == 'assign_var':
+        name, color = t.children
+        dic[name.value] = color.value
+        print(dic[name.value])
+
+    elif t.data == 'var':
+        name = t.children[0].value
+        print(dic[name])
+
     else:
         raise SyntaxError('Unknown instruction: %s' % t.data)
 
