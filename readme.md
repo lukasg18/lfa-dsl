@@ -5,7 +5,7 @@ Este trabalho consiste em um analisador Python para trabalhar com o módulo Turt
 Turtle é um módulo Python que oferece funcionalidades para fazermos desenhos na tela, com comandos muito simples. Esse módulo segue a idéia da linguagem de programação Logo, que é muito utilizada em escolas como apoio ao ensino de disciplinas regulares e também para introdução a programação para crianças. A linguagem Logo segue a ideia de um robô que o usuário pode controlar através de comandos simples de movimentação.
 
 #### Sobre o Lark
-Lark é um analisador de gramatica livre de contexto. Segundo sua documentação, Ele pode analisar qualquer gramática que você lançar nele, não importa o quão complicado ou ambíguo, e fazê-lo de forma eficiente.
+Lark é um analisador de gramatica livre de contexto. Segundo sua documentação, ele pode analisar qualquer gramática que você lançar nele, não importa o quão complicado ou ambíguo, e fazê-lo de forma eficiente.
 
 
 https://pythonhelp.wordpress.com/2011/07/09/o-modulo-turtle/
