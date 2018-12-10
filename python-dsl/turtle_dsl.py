@@ -1,10 +1,4 @@
 # This example implements a LOGO-like toy language for Python's turtle, with interpreter.
-
-try:
-    input = raw_input   # For Python2 compatibility
-except NameError:
-    pass
-
 import turtle
 import functionsTurtle
 
@@ -12,6 +6,11 @@ from lark import Lark
 
 parser = Lark(open('grammar.lark'))
 dic = {}
+
+def run_turtle(program):
+    parse_tree = parser.parse(program)
+    for inst in parse_tree.children:
+        run_instruction(inst)
 
 def run_instruction(t):
     if t.data == 'change_color':
@@ -50,24 +49,9 @@ def run_instruction(t):
     elif t.data == 'var':
         name = t.children[0].value
         print(dic[name])
+    
+    elif t.data == 'clear_screen':
+        turtle.clear()
 
     else:
         raise SyntaxError('Unknown instruction: %s' % t.data)
-
-
-def run_turtle(program):
-    parse_tree = parser.parse(program)
-    for inst in parse_tree.children:
-        run_instruction(inst)
-
-def main():
-    while True:
-        code = input('> ')
-        try:
-            run_turtle(code)
-        except Exception as e:
-            print(e)
-
-if __name__ == '__main__':
-    # test()
-    main()
