@@ -6,6 +6,9 @@ instruction: MOVEMENT NUMBER            -> movement
             | "fill" code_block          -> fill
             | "repeat" NUMBER code_block -> repeat
             |NAME "=" COLOR            -> assign_var
+            |clear                      ->clear_screen
+
+clear: "clear"     
 
 code_block: "{" instruction+ "}"
 
