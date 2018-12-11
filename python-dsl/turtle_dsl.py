@@ -4,10 +4,12 @@ from lark import Lark
 from functions import PrivateFunction
 
 parser = Lark(open('grammar.lark'))
+print("parser ", parser)
 dic = {}
 
 def run_turtle(program):
     parse_tree = parser.parse(program)
+    print("parse tree ", parse_tree)
     for inst in parse_tree.children:
         run_instruction(inst)
 
@@ -19,7 +21,7 @@ def run_instruction(t):
         # else:
         #     turtle.color(*t.children)   # We just pass the color names as-is
         func = PrivateFunction
-        func.olympics()
+        func.cool_design_two()
 
     elif t.data == 'change_bg':
         turtle.bgcolor(*t.children)   # We just pass the color names as-is
