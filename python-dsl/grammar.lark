@@ -1,12 +1,14 @@
 start: instruction+
 
-instruction: MOVEMENT NUMBER            -> movement
-            |NAME                      -> var
-            | "c" COLOR [COLOR]          -> change_color // bgcolor is optional
+instruction: MOVEMENT NUMBER             -> movement
+            |NAME                        -> var
+            | "c" COLOR [COLOR]          -> change_color // bgcolor e opcional
+            | "bg" COLOR                 -> change_bg  // trocando background
             | "fill" code_block          -> fill
             | "repeat" NUMBER code_block -> repeat
-            |NAME "=" COLOR            -> assign_var
-            |clear                      ->clear_screen
+            | "func" NAME                -> function
+            |NAME "=" COLOR              -> assign_var
+            |clear                       ->clear_screen
 
 clear: "clear"     
 

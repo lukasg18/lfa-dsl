@@ -1,8 +1,7 @@
 # This example implements a LOGO-like toy language for Python's turtle, with interpreter.
 import turtle
-import functionsTurtle
-
 from lark import Lark
+from functions import PrivateFunction
 
 parser = Lark(open('grammar.lark'))
 dic = {}
@@ -14,11 +13,16 @@ def run_turtle(program):
 
 def run_instruction(t):
     if t.data == 'change_color':
-        if bool(dic):                   # se existe alguma coisa no dicionario
-            name = t.children[0].value
-            turtle.color(dic[name])   # We just pass the color names as-is
-        else:
-            turtle.color(*t.children)   # We just pass the color names as-is
+        # if bool(dic):                   # se existe alguma coisa no dicionario
+        #     name = t.children[0].value
+        #     turtle.color(dic[name])   # We just pass the color names as-is
+        # else:
+        #     turtle.color(*t.children)   # We just pass the color names as-is
+        func = PrivateFunction
+        func.olympics()
+
+    elif t.data == 'change_bg':
+        turtle.bgcolor(*t.children)   # We just pass the color names as-is
 
     elif t.data == 'movement':
         name, number = t.children
@@ -44,11 +48,13 @@ def run_instruction(t):
     elif t.data == 'assign_var':
         name, color = t.children
         dic[name.value] = color.value
-        print(dic[name.value])
 
     elif t.data == 'var':
         name = t.children[0].value
         print(dic[name])
+    
+    elif t.data == 'function':
+        print("teste func")
     
     elif t.data == 'clear_screen':
         turtle.clear()
