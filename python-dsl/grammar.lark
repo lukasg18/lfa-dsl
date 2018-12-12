@@ -1,18 +1,19 @@
 start: instruction+
 
 instruction: MOVEMENT NUMBER             -> movement
-            |NAME                        -> var
-            | "c" COLOR [COLOR]          -> change_color // bgcolor e opcional
+            |custom_color                -> change_color // bgcolor e opcional
             | "bg" COLOR                 -> change_bg  // trocando background
             | "fill" code_block          -> fill
+            | "tree" code_block          -> tree_parser
             | "repeat" NUMBER code_block -> repeat
             | "func" NAME                -> function
             |NAME "=" COLOR              -> assign_var
             |clear                       ->clear_screen
 
+custom_color: "c" COLOR [COLOR]
 clear: "clear"     
-
 code_block: "{" instruction+ "}"
+variable: NAME
 
 MOVEMENT: "f"|"b"|"l"|"r"
 COLOR: ("a".."z")+

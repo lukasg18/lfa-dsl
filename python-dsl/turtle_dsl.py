@@ -13,13 +13,12 @@ def run_turtle(program):
 
 def run_instruction(t):
     if t.data == 'change_color':
-        # if bool(dic):                   # se existe alguma coisa no dicionario
-        #     name = t.children[0].value
-        #     turtle.color(dic[name])   # We just pass the color names as-is
-        # else:
-        #     turtle.color(*t.children)   # We just pass the color names as-is
-        func = PrivateFunction
-        func.olympics()
+        for i in range(len(t.children)):
+            if bool(dic):                   # se existe alguma coisa no dicionario
+                name = (t.children[i].children[0].value)
+                turtle.color(dic[name])   # We just pass the color names as-is
+            else:
+                turtle.color(*t.children[i].children)   # We just pass the color names as-is
 
     elif t.data == 'change_bg':
         turtle.bgcolor(*t.children)   # We just pass the color names as-is
@@ -40,6 +39,9 @@ def run_instruction(t):
         turtle.begin_fill()
         run_instruction(t.children[0])
         turtle.end_fill()
+
+    elif t.data == 'tree_parser':
+        print(t)
 
     elif t.data == 'code_block':
         for cmd in t.children:
