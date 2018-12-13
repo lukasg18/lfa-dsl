@@ -1,1 +1,1 @@
-fill { repeat 36 { f200 l170 }}
+fill { repeat 20 { f200 l170 }}
