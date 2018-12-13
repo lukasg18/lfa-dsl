@@ -44,8 +44,21 @@ def run_instruction(t):
         print(t)
 
     elif t.data == 'code_block':
-        for cmd in t.children:
-            run_instruction(cmd)
+        for i in t.children:
+            if((i != '{') and (i != '}')):
+                run_instruction(i)
+            # LCHA, block, RCHA = i
+        # print(LCHA)
+        # print(block)
+        # print(RCHA)
+        # for cmd in block:
+        #     print(cmd)
+            # run_instruction(block)
+        # print(t.children)
+        # for cmd in t.children:
+        #     print(cmd)
+        #     run_instruction(cmd)
+
 
     elif t.data == 'assign_var':
         name, color = t.children

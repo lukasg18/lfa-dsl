@@ -12,13 +12,15 @@ instruction: MOVEMENT NUMBER             -> movement
 
 custom_color: "c" COLOR [COLOR]
 clear: "clear"     
-code_block: "{" instruction+ "}"
+code_block: LCHA instruction+ RCHA
 variable: NAME
 
 MOVEMENT: "f"|"b"|"l"|"r"
 COLOR: ("a".."z")+
 NUMBER: ("0".."9")+
 NAME: ("a".."z")+
+LCHA:"{"
+RCHA:"}"
 
 %import common.WS
 %ignore WS
