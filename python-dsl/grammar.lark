@@ -2,7 +2,7 @@ start: instruction+
 
 instruction: MOVEMENT NUMBER             -> movement
             |custom_color                -> change_color // bgcolor e opcional
-            | "bg" COLOR                 -> change_bg  // trocando background
+            |custom_bg                 -> change_bg  // trocando background
             | "fill" code_block          -> fill
             | "tree" code_block          -> tree_parser
             | "repeat" NUMBER code_block -> repeat
@@ -11,9 +11,10 @@ instruction: MOVEMENT NUMBER             -> movement
             |clear                       ->clear_screen
 
 custom_color: "c" COLOR [COLOR]
-clear: "clear"     
+custom_bg: "bg" COLOR
 code_block: LCHA instruction+ RCHA
 variable: NAME
+clear: "clear"
 
 MOVEMENT: "f"|"b"|"l"|"r"
 COLOR: ("a".."z")+

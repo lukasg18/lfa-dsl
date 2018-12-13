@@ -16,12 +16,13 @@ def run_instruction(t):
         for i in range(len(t.children)):
             if bool(dic):                   # se existe alguma coisa no dicionario
                 name = (t.children[i].children[0].value)
-                turtle.color(dic[name])   # We just pass the color names as-is
+                turtle.color(dic[name])  
             else:
-                turtle.color(*t.children[i].children)   # We just pass the color names as-is
+                turtle.color(*t.children[i].children)   
 
     elif t.data == 'change_bg':
-        turtle.bgcolor(*t.children)   # We just pass the color names as-is
+        for i in range(len(t.children)):
+            turtle.bgcolor(*t.children[i].children)   
 
     elif t.data == 'movement':
         name, number = t.children
