@@ -2,17 +2,22 @@ start: instruction+
 
 instruction: MOVEMENT NUMBER             -> movement
             |custom_color                -> change_color // bgcolor e opcional
-            |custom_bg                 -> change_bg  // trocando background
-            | "fill" code_block          -> fill
-            | "tree" code_block          -> tree_parser
-            | "repeat" NUMBER code_block -> repeat
-            | "func" NAME                -> function
+            |custom_bg                   -> change_bg  // trocando background
+            |change_fill                 -> fill
+            |tree_view                   -> tree_parser
+            |loop                        -> repeat
+            |function                    -> call_function
             |NAME "=" COLOR              -> assign_var
             |clear                       ->clear_screen
 
 custom_color: "c" COLOR [COLOR]
 custom_bg: "bg" COLOR
+change_fill: "fill" code_block
+loop: "repeat" NUMBER code_block
+tree_view: "tree" code_block 
 code_block: LCHA instruction+ RCHA
+function: "func" NAME
+
 variable: NAME
 clear: "clear"
 
@@ -22,6 +27,10 @@ NUMBER: ("0".."9")+
 NAME: ("a".."z")+
 LCHA:"{"
 RCHA:"}"
+COMMENT: /#[^\n]*/
 
 %import common.WS
 %ignore WS
+%ignore COMMENT
+%ignore /[\t \f]+/  
+%ignore /\\[\t \f]*\r?\n/  

@@ -45,7 +45,7 @@ class PrivateFunction:
                 turtle.rt(135) 
 
                 turtle.down() 
-                while x < 120: 
+                while x < 50: 
                                 
                         turtle.fd(200)     
                         turtle.rt(61)
@@ -63,8 +63,6 @@ class PrivateFunction:
                         turtle.rt(11.1111) 
                         x = x+1 
 
-                turtle.exitonclick()
-
 
         def cool_design_two():
                 turtle.speed(0)
@@ -72,7 +70,7 @@ class PrivateFunction:
                 turtle.bgcolor('black')
                 x = 1
 
-                while x < 400:
+                while x < 200:
                         r = random.randint(0,255)
                         g = random.randint(0,255)
                         b = random.randint(0,255)
@@ -85,5 +83,3 @@ class PrivateFunction:
                         turtle.rt(90.911)
 
                         x = x+1 
-
-                turtle.exitonclick()

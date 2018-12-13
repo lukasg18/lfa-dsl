@@ -32,17 +32,19 @@ def run_instruction(t):
           'r': turtle.rt, }[name](int(number))
 
     elif t.data == 'repeat':
-        count, block = t.children
-        for i in range(int(count)):
-            run_instruction(block)
+        for i in range(len(t.children)):
+            count, block = t.children[i].children
+            for i in range(int(count)):
+                run_instruction(block)
 
     elif t.data == 'fill':
-        turtle.begin_fill()
-        run_instruction(t.children[0])
-        turtle.end_fill()
+        for i in range(len(t.children)):
+            turtle.begin_fill()
+            run_instruction(t.children[i].children[0])
+            turtle.end_fill()
 
     elif t.data == 'tree_parser':
-        print(t)
+        print(t.children)
 
     elif t.data == 'code_block':
         for i in t.children:
@@ -69,8 +71,20 @@ def run_instruction(t):
         name = t.children[0].value
         print(dic[name])
     
-    elif t.data == 'function':
-        print("teste func")
+    elif t.data == 'call_function':
+        func = PrivateFunction
+
+        for i in range(len(t.children)):
+            name_function = t.children[i].children[0].value
+
+            if(name_function == 'circle'):
+                func.circle()
+
+            elif(name_function == 'designone'):
+                func.cool_design_one()
+
+            elif(name_function == 'designtwo'):
+                func.cool_design_two()
     
     elif t.data == 'clear_screen':
         turtle.clear()
