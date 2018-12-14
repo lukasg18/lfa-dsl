@@ -1,7 +1,7 @@
 import turtle_dsl
 
 try:
-    input = raw_input   # For Python2 compatibility
+    input = raw_input   
 except NameError:
     pass
 
@@ -14,5 +14,4 @@ def main():
             print(e)
 
 if __name__ == '__main__':
-    # test()
     main()
