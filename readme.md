@@ -185,6 +185,12 @@ Tree(tree_view, [Tree(code_block, [Token(LCHA, '{'),
 Tree(call_function, [Tree(function, [Token(NAME, 'wind')])]), Token(RCHA, '}')])])
 ```
 
+#### Informações adicionais
+Para mais informações a respeito da biblioteca lark, segue abaixo uma imagem resumida sobre funções da biblioteca.<br>
+<figure>
+<img src="https://raw.githubusercontent.com/lukasg18/lfa-dsl/dev/dsl_images/download.png" width="80%" height="80%" style="display: block; margin-left: auto; margin-right: auto;">
+</figure>
+
 
 #### Referências
 
