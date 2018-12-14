@@ -1,4 +1,3 @@
-# This example implements a LOGO-like toy language for Python's turtle, with interpreter.
 import turtle
 from lark import Lark
 from classes.functions import PrivateFunction
@@ -6,6 +5,8 @@ from classes.movement import Movement
 from classes.colors import Colors
 from classes.loop import Loop
 from classes.fill import Fill
+from classes.code_block import CodeBlock
+from classes.assign import AssignVar
 
 parser = Lark(open('grammar/grammar.lark'))
 dic = {}
@@ -40,14 +41,12 @@ def run_instruction(t):
         print(t.children)
 
     elif t.data == 'code_block':
-        for i in t.children:
-            if((i != '{') and (i != '}')):
-                run_instruction(i)
-
+        code = CodeBlock
+        code.block_instruction(t)
 
     elif t.data == 'assign_var':
-        name, ident_assign, color = t.children[0].children
-        dic[name.value] = color.value
+        ass = AssignVar
+        ass.assign_instruction(dic,t)
 
     elif t.data == 'var':
         name = t.children[0].value
