@@ -15,14 +15,14 @@ def run_instruction(t):
     if t.data == 'change_color':
         for i in range(len(t.children)):
             if bool(dic):                   # se existe alguma coisa no dicionario
-                name = (t.children[i].children[0].value)
+                name = (t.children[i].children[1].value)
                 turtle.color(dic[name])  
             else:
-                turtle.color(*t.children[i].children)   
+                turtle.color(*t.children[i].children[1:])   
 
     elif t.data == 'change_bg':
         for i in range(len(t.children)):
-            turtle.bgcolor(*t.children[i].children)   
+            turtle.bgcolor(t.children[i].children[1])   
 
     elif t.data == 'movement':
         name, number = t.children
@@ -33,14 +33,14 @@ def run_instruction(t):
 
     elif t.data == 'repeat':
         for i in range(len(t.children)):
-            count, block = t.children[i].children
+            ident_loop, count, block = t.children[i].children
             for i in range(int(count)):
                 run_instruction(block)
 
     elif t.data == 'fill':
         for i in range(len(t.children)):
             turtle.begin_fill()
-            run_instruction(t.children[i].children[0])
+            run_instruction(t.children[i].children[1])
             turtle.end_fill()
 
     elif t.data == 'tree_parser':
@@ -53,7 +53,7 @@ def run_instruction(t):
 
 
     elif t.data == 'assign_var':
-        name, color = t.children
+        name, ident_assign, color = t.children[0].children
         dic[name.value] = color.value
 
     elif t.data == 'var':
@@ -64,7 +64,7 @@ def run_instruction(t):
         func = PrivateFunction
 
         for i in range(len(t.children)):
-            name_function = t.children[i].children[0].value
+            ident_func, name_function = t.children[i].children
 
             if(name_function == 'circle'):
                 func.circle()

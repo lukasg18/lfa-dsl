@@ -7,21 +7,29 @@ instruction: MOVEMENT NUMBER             -> movement
             |tree_view                   -> tree_parser
             |loop                        -> repeat
             |function                    -> call_function
-            |NAME "=" COLOR              -> assign_var
+            |assign                      -> assign_var
             |clear                       ->clear_screen
 
-custom_color: "c" COLOR [COLOR]
-custom_bg: "bg" COLOR
-change_fill: "fill" code_block
-loop: "repeat" NUMBER code_block
-tree_view: "tree" code_block 
+custom_color: IDENT_COLOR COLOR [COLOR]
+custom_bg: IDENT_BG COLOR
+change_fill: IDENT_FILL code_block
+loop: IDENT_LOOP NUMBER code_block
+tree_view: IDENT_TREE code_block 
 code_block: LCHA instruction+ RCHA
-function: "func" NAME
+function: IDENT_FUNC NAME
+assign: NAME IDENT_ASSIGN COLOR
 
 variable: NAME
 clear: "clear"
 
 MOVEMENT: "f"|"b"|"l"|"r"
+IDENT_COLOR: "c"
+IDENT_BG: "bg"
+IDENT_FILL: "fill"
+IDENT_LOOP: "repeat"
+IDENT_TREE: "tree"
+IDENT_FUNC: "func"
+IDENT_ASSIGN: "="
 COLOR: ("a".."z")+
 NUMBER: ("0".."9")+
 NAME: ("a".."z")+
