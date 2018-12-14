@@ -77,7 +77,7 @@ class PrivateFunction:
                         x = x+1 
 
 
-        def cool_design_two():
+        def wind_vane():
                 turtle.speed(0)
 
                 turtle.bgcolor('black')

@@ -72,8 +72,8 @@ def run_instruction(t):
             elif(name_function == 'designone'):
                 func.cool_design_one()
 
-            elif(name_function == 'designtwo'):
-                func.cool_design_two()
+            elif(name_function == 'wind'):
+                func.wind_vane()
 
             elif(name_function == 'olympic'):
                 func.olympics()
