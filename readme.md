@@ -68,7 +68,7 @@ A seguir apresentaremos alguns comandos inseridos na DSL e logo em seguida seus 
 ##### Exemplo 1
 
 
-
+[Tree(tree_view, [Tree(code_block, [Token(LCHA, '{'), Tree(change_bg, [Tree(custom_bg, [Token(COLOR, 'black')])]), Tree(change_color, [Tree(custom_color, [Token(COLOR, 'red'), Token(COLOR, 'yellow')])]), Tree(fill, [Tree(change_fill, [Tree(code_block, [Token(LCHA, '{'), Tree(repeat, [Tree(loop, [Token(NUMBER, '36'), Tree(code_block, [Token(LCHA, '{'), Tree(movement, [Token(MOVEMENT, 'f'), Token(NUMBER, '200')]), Tree(movement, [Token(MOVEMENT, 'l'), Token(NUMBER, '170')]), Token(RCHA, '}')])])]), Token(RCHA, '}')])])]), Token(RCHA, '}')])])]
 
 #### Referências
 

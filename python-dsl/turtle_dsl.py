@@ -77,6 +77,9 @@ def run_instruction(t):
 
             elif(name_function == 'olympic'):
                 func.olympics()
+
+            elif(name_function == 'hello'):
+                func.hello_world()
     
     elif t.data == 'clear_screen':
         turtle.clear()
