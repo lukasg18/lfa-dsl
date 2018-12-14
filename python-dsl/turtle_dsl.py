@@ -50,17 +50,6 @@ def run_instruction(t):
         for i in t.children:
             if((i != '{') and (i != '}')):
                 run_instruction(i)
-            # LCHA, block, RCHA = i
-        # print(LCHA)
-        # print(block)
-        # print(RCHA)
-        # for cmd in block:
-        #     print(cmd)
-            # run_instruction(block)
-        # print(t.children)
-        # for cmd in t.children:
-        #     print(cmd)
-        #     run_instruction(cmd)
 
 
     elif t.data == 'assign_var':
@@ -85,6 +74,9 @@ def run_instruction(t):
 
             elif(name_function == 'designtwo'):
                 func.cool_design_two()
+
+            elif(name_function == 'olympic'):
+                func.olympics()
     
     elif t.data == 'clear_screen':
         turtle.clear()

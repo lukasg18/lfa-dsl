@@ -1,1 +1,4 @@
-func designtwo
+func designtwo 
+func designone 
+func circle 
+func olympic 
