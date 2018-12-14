@@ -1,9 +1,11 @@
 # This example implements a LOGO-like toy language for Python's turtle, with interpreter.
 import turtle
 from lark import Lark
-from functions import PrivateFunction
+from classes.functions import PrivateFunction
+from classes.movement import Movement
+from classes.colors import Colors
 
-parser = Lark(open('grammar.lark'))
+parser = Lark(open('grammar/grammar.lark'))
 dic = {}
 
 def run_turtle(program):
@@ -13,23 +15,16 @@ def run_turtle(program):
 
 def run_instruction(t):
     if t.data == 'change_color':
-        for i in range(len(t.children)):
-            if bool(dic):                   # se existe alguma coisa no dicionario
-                name = (t.children[i].children[1].value)
-                turtle.color(dic[name])  
-            else:
-                turtle.color(*t.children[i].children[1:])   
+          color = Colors
+          color.change_pencil_color(dic,t)
 
     elif t.data == 'change_bg':
         for i in range(len(t.children)):
             turtle.bgcolor(t.children[i].children[1])   
 
     elif t.data == 'movement':
-        name, number = t.children
-        { 'f': turtle.fd,
-          'b': turtle.bk,
-          'l': turtle.lt,
-          'r': turtle.rt, }[name](int(number))
+        move = Movement
+        move.movement_turtle(t)
 
     elif t.data == 'repeat':
         for i in range(len(t.children)):
