@@ -10,3 +10,7 @@ class Colors:
                 turtle.color(dic[name])  
             else:
                 turtle.color(*t.children[i].children[1:]) 
+    
+    def change_background(t):
+        for i in range(len(t.children)):
+            turtle.bgcolor(t.children[i].children[1])   

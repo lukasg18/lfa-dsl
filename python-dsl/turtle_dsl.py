@@ -4,6 +4,8 @@ from lark import Lark
 from classes.functions import PrivateFunction
 from classes.movement import Movement
 from classes.colors import Colors
+from classes.loop import Loop
+from classes.fill import Fill
 
 parser = Lark(open('grammar/grammar.lark'))
 dic = {}
@@ -19,24 +21,20 @@ def run_instruction(t):
           color.change_pencil_color(dic,t)
 
     elif t.data == 'change_bg':
-        for i in range(len(t.children)):
-            turtle.bgcolor(t.children[i].children[1])   
+        bg = Colors
+        bg.change_background(t)
 
     elif t.data == 'movement':
         move = Movement
         move.movement_turtle(t)
 
     elif t.data == 'repeat':
-        for i in range(len(t.children)):
-            ident_loop, count, block = t.children[i].children
-            for i in range(int(count)):
-                run_instruction(block)
+        l = Loop
+        l.loop_instruction(t)
 
     elif t.data == 'fill':
-        for i in range(len(t.children)):
-            turtle.begin_fill()
-            run_instruction(t.children[i].children[1])
-            turtle.end_fill()
+        f = Fill
+        f.fill_instruction(t)
 
     elif t.data == 'tree_parser':
         print(t.children)
